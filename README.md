@@ -1,2 +1,0 @@
-# gridster
-use gridster
