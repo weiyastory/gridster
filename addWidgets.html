@@ -1,0 +1,80 @@
+
+<!doctype html>
+<html>
+<head>
+    <title>Demo &raquo; Add widgets dynamically &raquo; gridster.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="gridster.min.css">
+    <script src="jq.min.js"></script>
+    <script src="gridster.min.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+
+        li{
+            list-style: none;
+            background: pink;
+            border:1px solid black;
+        }
+       /* 想要在固定范围内拖拽，可以设定固定的宽高及滚动*/
+        .gridster{
+            height: 400px ;
+            width: 400px ;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            min-width:400px !important;
+            background: green;
+            overflow-y: auto;  /*设置为纵向滚动时，如果一个widget不设置从哪行哪列开始，默认纵向排列*/
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>动态添加模块</h1>
+
+<p>利用arr.add_widget（）方法来添加模块
+    Create a grid adding widgets from an Array (not from HTML) using <code>add_widget</code> method. Widget position (col, row) not specified.</p>
+    <div class="gridster">
+        <div class="container"></div>
+    </div>
+
+
+
+
+<script type="text/javascript" id="code">
+    var gridster = $(".gridster .container").gridster({
+            widget_margins: [0,0],//每个widget的左右，上下的margin
+            widget_base_dimensions: [50, 50],//一个单元的宽为100 高为50
+            avoid_overlapped_widgets:true,
+            resize: {
+                enabled: true,
+                axes:["x","y","both"]
+            }
+        }).data('gridster');
+
+        var widgets = [
+            ['<li>0</li>', 2,2,1,1 ],//添加一个widget，其宽高各占据一个格
+            ['<li>1</li>', 1, 2,1,3 ],
+            ['<li>2</li>', 1,1,1,4 ],
+            ['<li>3</li>', 3,1,3,1],
+            ['<li>4</li>', 1,1,4, 1],
+            ['<li>5</li>', 1, 1,5,1],
+            ['<li>6</li>', 1,2,4,2],
+            ['<li>7</li>', 1,2,6,1],
+            ['<li>8</li>', 2, 1,4,3],
+            ['<li>9</li>', 1, 4,3,1],
+            ['<li>10</li>', 1,3,2,3],
+            ['<li>11</li>', 2, 2,5,3]
+        ];
+
+        $.each(widgets, function (i, widget) {
+            gridster.add_widget.apply(gridster, widget)
+        });
+        //jQuery.each( array, callback )
+</script>
+</body>
+</html>

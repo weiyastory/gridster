@@ -1,0 +1,67 @@
+
+<!doctype html>
+<html>
+<head>
+    <title>Demo &raquo; Add widgets dynamically &raquo; gridster.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="gridster.min.css">
+    <script src="jq.min.js"></script>
+    <script src="gridster.min.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+
+        li{
+            list-style: none;
+            background: pink;
+        }
+       /* 想要在固定范围内拖拽，可以设定固定的宽高及滚动*/
+        ul{
+            background: green;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>动态添加模块</h1>
+
+<p>利用arr.add_widget（）方法来添加模块
+    Create a grid adding widgets from an Array (not from HTML) using <code>add_widget</code> method. Widget position (col, row) not specified.</p>
+<div class="gridster">
+    <ul></ul>
+</div>
+
+
+
+<script type="text/javascript" id="code">
+    var gridster;
+
+    $(function () {
+
+        gridster = $(".gridster > ul").gridster({
+            widget_margins: [5, 5],
+            widget_base_dimensions: [50, 50],
+            avoid_overlapped_widgets:true,
+        }).data('gridster');
+
+        var widgets = [
+            ['<li>0</li>', 1, 2],
+            ['<li>1</li>', 3, 2],
+            ['<li>2</li>', 3, 2],
+            ['<li>3</li>', 2, 1],
+            ['<li>4</li>', 4, 1],
+            ['<li>5</li>', 1, 2],
+            ['<li>6</li>', 2, 1],
+            ['<li>7</li>', 3, 2],
+            ['<li>8</li>', 1, 1],
+            ['<li>9</li>', 2, 2],
+            ['<li>10</li>', 1, 3]
+        ];
+
+        $.each(widgets, function (i, widget) {
+            gridster.add_widget.apply(gridster, widget)
+        });
+
+    });
+</script>
+</body>
+</html>
